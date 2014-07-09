@@ -52,7 +52,7 @@ class Wolfram_CA {
     aout = minim.getLineOut(Minim.STEREO);
     oscillators = new SineWave[sizeWorld];
     for (int i = 0; i < oscillators.length; i++) {
-      int freq = i * interval + freqBase;
+      int freq = i * intervalo + freqBase;
       oscillators[i] = new SineWave(freq, 0.5, aout.sampleRate());
       oscillators[i].portamento(50);
 
@@ -61,6 +61,7 @@ class Wolfram_CA {
   }
 
   void render() {
+    // Todos a frecuencia 0
     for (int i = 0; i < sizeWorld; i++) {
       oscillators[i].setFreq(0);
     }
@@ -68,6 +69,7 @@ class Wolfram_CA {
     for (int i = 0; i < sizeWorld; i++) {
       if (world[i][topWorld] == 1) {
         fill(color(0));
+        int freq = i * intervalo + freqBase;
         oscillators[i].setFreq(freq);
       }
       else {
@@ -150,10 +152,14 @@ class Wolfram_CA {
     return binaryNumber;
   }
 
+  void setRule(int newRule) {
+    nRule = newRule;
+    rule = buildRule(nRule);
+  }
+
   void stop() {
     aout.close();
     minim.stop();
   }
-  
 }
 

@@ -10,16 +10,17 @@ class Wolfram_CA {
   float limitTime;
 
   //Variables de evolucion
-  int nRule;
-  String rule;
+  int nRule;   // Regla en numero
+  String rule; // Regla en binario (texto)
 
   //Variables para salida gráfica
   float widthCell;
   float heightCell;
 
-  int liveColor = color(0);
-  int deadColor = color(255);
-
+  int liveColor = color(0); // Negro para vivo - 1
+  int deadColor = color(255); // Blanco para muerto - 0
+  
+  // Constructor
   Wolfram_CA(int[] initialWorld, float widthCell, float heightCell, float limitTime) {    
     this.sizeWorld = initialWorld.length;
     this.world = new int[sizeWorld][2];
@@ -32,7 +33,7 @@ class Wolfram_CA {
       this.world[i][this.topWorld] = initialWorld[i];
     }
 
-    this.nRule = 110;
+    this.nRule = 90;
     this.rule = buildRule(nRule);
 
     this.widthCell = widthCell;
@@ -42,10 +43,10 @@ class Wolfram_CA {
   void render() {
     for (int i = 0; i < sizeWorld; i++) {
       if (world[i][topWorld] == 1) {
-        fill(color(0));
+        fill(liveColor);
       }
       else {
-        fill(color(255));
+        fill(deadColor);
       }
 
       rect(i * widthCell, time * heightCell, widthCell, heightCell);
@@ -70,6 +71,7 @@ class Wolfram_CA {
 
   int evolveCell(int neighborhoodValue) {
     int position = rule.length() - 1 - neighborhoodValue;
+    
     if (rule.charAt(position) == '1') {
       return 1;
     } 
@@ -124,5 +126,12 @@ class Wolfram_CA {
     }
     return binaryNumber;
   }
+  
+  void setRule(int newRule) {
+    nRule = newRule;
+    rule = buildRule(nRule);
+  }
+  
+  
 }
 

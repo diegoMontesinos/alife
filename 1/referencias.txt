@@ -1,0 +1,35 @@
+
+>>>>>>>>>>>> SESION 1
+
+Bibliografía:
+
+   - A new kind of science. Stephen Wolfram
+   Lo pueden descargar de esta liga.
+
+   https://purpsun.googlecode.com/files/Wolfram%20-%20A%20New%20Kind%20of%20Science.pdf
+   
+   - The Nature of Code. Daniel Shiffman
+   Pueden descargar una versión gratuita de acá:
+
+   http://natureofcode.com/
+
+   - The Computational Beauty of Nature: Computer Explorations of Fractals, Chaos, Complex Systems, and Adaptation. Gary William Flake
+   Lamentablemente este no lo he encontrado pirateado en PDF, pero les puse una versión HTML.
+
+   - Les subo dos artículos, uno de Wolfram con su clasificación y otro que habla de la complejidad.
+
+Videos:
+   
+   - Keepon.
+   		https://www.youtube.com/watch?v=nPdP1jBfxzo
+   - Pruebas de atención conjunta con niños con autismo.
+   		https://www.youtube.com/watch?v=tif4U3OjT2M
+   - INFANOID (el otro robot que les decía).
+   		https://www.youtube.com/watch?v=gLE7DE8H7VI
+
+   - Virtual Creatures
+        https://www.youtube.com/watch?v=JBgG_VSP7f8
+
+Cualquier duda mi correo es: diegoa.montesinos@gmail.com
+
+<<<<<<<<<<<<<<<<<<<<<<<
