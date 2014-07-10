@@ -1,10 +1,12 @@
 
 class Termite {
-
+  
+  // Posicion de la termita
   int x;
   int y;
-  boolean hasWoodChip;
-
+  boolean hasWoodChip; // Esta cargando o no una maderita
+  
+  // Constructor
   Termite(int x, int y) {
     this.x = x;
     this.y = y;

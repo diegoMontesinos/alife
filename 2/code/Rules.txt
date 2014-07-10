@@ -37,34 +37,6 @@
     if (this.pos.y < 0)      this.pos.y = height;
   }
 
-  PVector avoidRule(LinkedList<Boid> neighborhood) {
-    PVector vAvoid = new PVector(0, 0);
-
-    for (int i = 0; i < neighborhood.size(); i++) {
-      Boid neighbor = neighborhood.get(i);
-
-      float distance = PVector.dist(this.pos, neighbor.pos);
-      if ((distance > 0) && distance < (this.parentFlock.minDistance)) {
-        PVector diff = PVector.sub(this.pos, neighbor.pos);
-        diff.normalize();
-        diff.div(distance);
-        vAvoid.add(diff);
-      }
-    }
-
-    if (!neighborhood.isEmpty()) {
-      vAvoid.div((float) neighborhood.size());
-    }
-
-    if (vAvoid.mag() > 0) {
-      vAvoid.normalize();
-      vAvoid.mult(this.parentFlock.maxSpeed);
-      vAvoid.sub(this.vel);
-      vAvoid.limit(this.parentFlock.maxForce);
-    }
-
-    return vAvoid;
-  }
 
   PVector copyRule(LinkedList<Boid> neighborhood) {
     PVector vCopy;

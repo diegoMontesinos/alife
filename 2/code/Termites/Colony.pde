@@ -33,6 +33,7 @@ class Colony {
     for (int i = 0; i < nTermites; i++) {
       int xTermite = floor(random(cellsX));
       int yTermite = floor(random(cellsY));
+
       while (world[xTermite][yTermite] == WOODCHIP) {
         xTermite = floor(random(cellsX));
         yTermite = floor(random(cellsY));
