@@ -60,23 +60,37 @@ class ConwayLife_CA {
 
   int getRule(int i, int j) {
     int countNeighbors = neighbors(i, j);
-
-    if (world[i][j][topWorld] == 1) {
+    int cellValue = world[i][j][topWorld];
+    
+    // Si estoy vivo
+    if (cellValue == 1) {
+      
+      // Y hay 1 o 0 vivos
       if (countNeighbors == 1 || countNeighbors == 0) {
+        // Muero de soledad
         return 0;
-      } 
+      }
+      // Y si hay exactamente 2 o exactamente 3
       else if (countNeighbors == 2 || countNeighbors == 3) {
+        // Sigo vivo
         return 1;
       } 
-      else if (countNeighbors >= 4) {
+      // O si hay mas de 3
+      else if (countNeighbors > 3) {
+        // Muero por sobrepoblacion (hambre)
         return 0;
       }
     } 
+    // Si estoy muerto
     else {
+      // Y hay exactamente 3 vecinos
       if (countNeighbors == 3) {
+        // Regreso del mas alla
         return 1;
       } 
+      // Otro caso
       else {
+        // Sigo muerto
         return 0;
       }
     }

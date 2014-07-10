@@ -1,7 +1,7 @@
 
 RockPaperScissors_CA cellAut = null;
 
-float sizeCell = 4;
+float sizeCell = 1;
 int stateToPut = 1;
 
 void setup() {
@@ -20,6 +20,7 @@ void setup() {
   }
 
   cellAut = new RockPaperScissors_CA(initialState, sizeCell, sizeCell);
+  frameRate(100000);
 }
 
 void draw() {

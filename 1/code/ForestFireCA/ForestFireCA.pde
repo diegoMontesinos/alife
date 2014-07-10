@@ -7,7 +7,7 @@ int[][][] world;
 int currWorld;
 
 float pBurn = 0.007;
-float pGrowth = 0.08;
+float pGrowth = 0.008;
 
 boolean vonNeuman = true;
 

@@ -15,7 +15,7 @@ void draw() {
 
 void keyPressed() {
   if (key == 's') {
-    dla.saveMesh("dla_3d_2.stl");
+    dla.saveMesh("dla_3d.stl");
     exit();
   }
 }

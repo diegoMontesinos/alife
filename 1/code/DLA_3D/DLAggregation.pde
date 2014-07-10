@@ -27,9 +27,10 @@ class DLAggregation3D {
 
   float widthCell;
   float heightCell;
+  
   float dephtCell;
   float y = 0;
-  float yIncrement = 1;
+  float yIncrement = 0.2;
 
   // ToxicLibs
   ToxiclibsSupport gfx;
@@ -91,6 +92,10 @@ class DLAggregation3D {
         }
 
         if (isNearStucked(xMovs[i], yMovs[i])) {
+          
+          AABB boundingBox = new AABB(new Vec3D((float) xMovs[i] * widthCell * 0.75, y, (float) yMovs[i] * heightCell * 0.75), new Vec3D(widthCell, heightCell, dephtCell));
+          mesh.addMesh(boundingBox.toMesh());
+          
           world[xMovs[i]][yMovs[i]] = 1;
 
           xMovs[i] = -1;
@@ -186,9 +191,6 @@ class DLAggregation3D {
 
         case STUCK_VALUE:
           fill(0);
-          AABB boundingBox = new AABB(new Vec3D((float) i * widthCell * 2.0, y * 2.0, (float) j * heightCell * 2.0), new Vec3D(widthCell, heightCell, dephtCell));
-          mesh.addMesh(boundingBox.toMesh());
-
           break;
         }
 

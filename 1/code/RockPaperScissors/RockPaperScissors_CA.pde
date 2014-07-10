@@ -20,7 +20,7 @@ class RockPaperScissors_CA {
   float heightCell;
 
   int[] colors = { 
-    color(255), color(255, 0, 0), color(0, 255, 0), color(0, 0, 255)
+    color(255), color(13, 193, 210), color(129, 5, 213), color(255, 216, 15)
   };
 
   RockPaperScissors_CA(int[][] initialStates, float widthCell, float heightCell) {  
@@ -64,7 +64,105 @@ class RockPaperScissors_CA {
   }
 
   void evolveCell (int x, int y, int nextTime) {
+    // Elegimos uno de los 8 vecinos al azar
+    int i = 0;
+    int j = 0;
+    while (true) {
+      i = floor(random(-1, 2));
+      j = floor(random(-1, 2));
+
+      // Prevenimos que no sea el centro
+      if (i != 0 || j != 0) {
+        break;
+      }
+    }
+
+    // Correjimos la frontera
+    int xNeighbor = 0;
+    if ((x + i) < 0) {
+      xNeighbor = cellsX - 1;
+    } 
+    else if ((x + i) >= cellsX) {
+      xNeighbor = 0;
+    } 
+    else {
+      xNeighbor = x + i;
+    }
+
+    int yNeighbor = 0;
+    if ((y + j) < 0) {
+      yNeighbor = cellsY - 1;
+    } 
+    else if ((y + j) >= cellsY) {
+      yNeighbor = 0;
+    }
+    else {
+      yNeighbor = y + j;
+    }
+
+    int cellState = states[x][y][time];
+    int cellValue = values[x][y][time];
+
+    int neighborState = states[xNeighbor][yNeighbor][time];
+    int neighborValue = values[xNeighbor][yNeighbor][time];
+
+    states[x][y][nextTime] = cellState;
+    values[x][y][nextTime] = cellValue;
+
+    // Si la celula es blanca, tomamos un vecino de color con valor menor a los hits
+    if (cellState == BLANK_VALUE && neighborState != BLANK_VALUE && neighborValue < hits) {
+      // Tomamos su valor
+      states[x][y][nextTime] = neighborState;
+      values[x][y][nextTime] = neighborValue + 1;
+    }
+    else {
+      int result = fight(cellState, neighborState);
+
+      if (result == -1) {
+        values[x][y][nextTime] = cellValue + 1;
+        values[xNeighbor][yNeighbor][nextTime] = 0;
+
+        if (values[x][y][nextTime] > hits) {
+          states[x][y][nextTime] = neighborState;
+          values[x][y][nextTime] = 0;
+        }
+      } 
+      else if (result == 1) {
+        values[xNeighbor][yNeighbor][nextTime] = neighborValue + 1;
+        values[x][y][nextTime] = 0;
+
+        if (values[xNeighbor][yNeighbor][nextTime] > hits) {
+          states[xNeighbor][yNeighbor][nextTime] = cellState;
+          values[xNeighbor][yNeighbor][nextTime] = 0;
+        }
+      }
+    }
   }
-  
+
+  int fight(int stateA, int stateB) {
+    if (enemy(stateA) == stateB) {
+      return -1;
+    } 
+    else if (enemy(stateB) == stateA) {
+      return 1;
+    }
+
+    return 0;
+  }
+
+  int enemy(int state) {
+    switch(state) {
+    case ROCK_VALUE:
+      return PAPER_VALUE;
+
+    case PAPER_VALUE:
+      return SCISSOR_VALUE;
+
+    case SCISSOR_VALUE:
+      return ROCK_VALUE;
+    }
+
+    return -1;
+  }
 }
 
