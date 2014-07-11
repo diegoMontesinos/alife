@@ -29,11 +29,12 @@ class Boid {
 
     // Obtenemos el cambio de velocidad del elemento con las 3 reglas de manada
     PVector vAvoid = avoidRule(neighborhood);
-    PVector vCopy = copyRule(neighborhood);
-    PVector vCenter = centerRule(neighborhood);
-
     vAvoid.mult(this.parentFlock.wAvoidRule);
+    
+    PVector vCopy = copyRule(neighborhood);
     vCopy.mult(this.parentFlock.wCopyRule);
+    
+    PVector vCenter = centerRule(neighborhood);
     vCenter.mult(this.parentFlock.wCenterRule);
 
     // Obtenemos el vector de cambio en base a las reglas
@@ -51,6 +52,13 @@ class Boid {
     if (this.pos.x < 0)      this.pos.x = width;  
     if (this.pos.y > height) this.pos.y = 0;
     if (this.pos.y < 0)      this.pos.y = height;
+  }
+
+  void render() {
+    fill(0);
+    noStroke();
+
+    ellipse(pos.x, pos.y, 6, 6);
   }
 
   PVector avoidRule(LinkedList<Boid> neighborhood) {
@@ -127,13 +135,6 @@ class Boid {
     }
 
     return vCenter;
-  }
-
-  void render() {
-    fill(0);
-    noStroke();
-    
-    ellipse(pos.x, pos.y, 4, 4);
   }
 }
 

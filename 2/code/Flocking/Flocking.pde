@@ -1,22 +1,17 @@
-import toxi.geom.*;
-import toxi.geom.mesh.*;
-import toxi.processing.*;
-import toxi.geom.mesh2d.*;
-
 import java.util.LinkedList;
 
-Flock manada;
+Flock flock;
 
 void setup() {
   size(500, 500);
   
-  manada = new Flock(150, new ToxiclibsSupport(this));
+  flock = new Flock(150);
 }
 
 void draw() {
   background(255);
   
-  manada.update();
-  manada.render();
+  flock.update();
+  flock.render();
 }
 
