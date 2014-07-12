@@ -55,8 +55,6 @@ class GeneticAlgorithm {
       DNA[] sons = mother.crossover(father);
       newPopulation[i] = sons[0];
       newPopulation[(i + 1) % this.nPopulation] = sons[1];
-
-      // 4. Mutacion
     }
 
     // 4. Mutacion
@@ -123,5 +121,10 @@ class GeneticAlgorithm {
 
     return this.population[indexBest];
   }
+  
+  void setTarget(int newTarget) {
+    this.target = newTarget;
+  }
+  
 }
 
